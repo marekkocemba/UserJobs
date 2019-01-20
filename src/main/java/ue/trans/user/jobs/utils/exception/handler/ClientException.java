@@ -1,7 +1,6 @@
 package ue.trans.user.jobs.utils.exception.handler;
 
 import lombok.Getter;
-import ue.trans.user.jobs.enums.ExceptionCodeEnum;
 
 @Getter
 public class ClientException extends RuntimeException {

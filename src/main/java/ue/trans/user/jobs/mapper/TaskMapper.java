@@ -4,25 +4,26 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
+import ue.trans.user.jobs.dto.TaskDto;
 import ue.trans.user.jobs.dto.UserDto;
+import ue.trans.user.jobs.model.Task;
 import ue.trans.user.jobs.model.User;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper {
+public interface TaskMapper {
 
-    UserMapper USER_MAPPER = Mappers.getMapper(UserMapper.class);
-
+    TaskMapper TASK_MAPPER = Mappers.getMapper(TaskMapper.class);
 
     @Mappings({
-            @Mapping(target="password", ignore = true)
+            @Mapping(source = "user.id", target = "userId")
     })
-    UserDto toUserDto(User user);
+    TaskDto toTaskDto(Task task);
 
     @Mappings({
             @Mapping(target="dateCreate", ignore = true),
-            @Mapping(target="authorities", ignore = true)
+            @Mapping(source = "userId", target = "user.id")
     })
-    User toUser(UserDto userDto);
+    Task toTask(TaskDto taskDto);
 
 
 }

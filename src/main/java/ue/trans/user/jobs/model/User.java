@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,10 +21,13 @@ public class User implements UserDetails {
     @Column(unique = true, nullable = false)
     private Long id;
     private String login;
+    private String email;
     private String password;
     private Boolean active;
     @Column(name="date_create")
     private ZonedDateTime dateCreate;
+    @OneToMany(mappedBy="user")
+    private List<Task> tasks;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -62,9 +66,7 @@ public class User implements UserDetails {
 
     @PrePersist
     private void beforePersist() {
-        if (this.dateCreate == null){
-            dateCreate = ZonedDateTime.now();
-        }
+        dateCreate = ZonedDateTime.now();
         if (this.active == null){
             active = true;
         }

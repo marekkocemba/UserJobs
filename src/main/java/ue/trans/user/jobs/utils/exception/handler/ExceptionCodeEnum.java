@@ -1,4 +1,4 @@
-package ue.trans.user.jobs.enums;
+package ue.trans.user.jobs.utils.exception.handler;
 
 public enum ExceptionCodeEnum {
     SAMPLE_ERROR_CODE_1,

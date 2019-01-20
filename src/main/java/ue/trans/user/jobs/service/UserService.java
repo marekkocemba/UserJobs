@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ue.trans.user.jobs.dto.UserDto;
-import ue.trans.user.jobs.enums.ExceptionCodeEnum;
+import ue.trans.user.jobs.utils.exception.handler.ExceptionCodeEnum;
 import ue.trans.user.jobs.model.User;
 import ue.trans.user.jobs.repository.UserRepository;
 import ue.trans.user.jobs.utils.exception.handler.ClientException;
