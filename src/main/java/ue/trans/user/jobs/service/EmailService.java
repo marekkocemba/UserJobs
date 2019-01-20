@@ -2,6 +2,7 @@ package ue.trans.user.jobs.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ue.trans.user.jobs.enums.TaskStatusEnum;
 import ue.trans.user.jobs.repository.TaskRepository;
 import ue.trans.user.jobs.utils.email.EmailUtil;
 
@@ -17,7 +18,8 @@ public class EmailService {
 
     public void sendTaskReminders() {
         ZonedDateTime today = ZonedDateTime.now();
-        taskRepository.findByDateExecuteBetween(today.with(LocalTime.MIN), today.with(LocalTime.MAX))
+        taskRepository.findByTaskStatusAndDateExecuteBetween(
+                TaskStatusEnum.TODO,today.with(LocalTime.MIN), today.with(LocalTime.MAX))
                 .forEach(task -> {
                     emailUtil.sendTaskReminder(task);
                 });
