@@ -20,16 +20,19 @@ public class TaskController {
 
     @PostMapping(value = "/tasks")
     public TaskDto addTask(@RequestBody @Valid TaskDto taskDto) {
+        log.info("Adding task");
         return taskService.addTask(taskDto);
     }
 
     @GetMapping(value = "/tasks/user/{id}/task-status/{taskStatus}")
     public List<TaskDto> getTasksByUserAndStatus(@PathVariable Long id, @PathVariable TaskStatusEnum taskStatus) {
+        log.info("Returning tasks");
         return taskService.getTasksByUserAndStatus(id, taskStatus);
     }
 
     @PatchMapping(value = "/tasks/{id}/task-status/{taskStatus}")
     public ResponseEntity updateTask(@PathVariable Long id, @PathVariable TaskStatusEnum taskStatus) {
+        log.info("Updating task");
         taskService.updateTask(id, taskStatus);
         return ResponseEntity.ok().build();
     }
